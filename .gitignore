@@ -1,0 +1,15 @@
+# Local Codex workspace metadata
+.agents/
+.codex/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and optional JavaScript tooling
+*.log
+node_modules/
+dist/
+coverage/

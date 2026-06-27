@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build a D&D encounter from a party and monsters from the 2024 Monster Manual.">
+  <title>Encounter Builder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img">
+          <path d="M7 5h7l-2 3 13 13-4 4L8 12l-3 2V7l2-2Z"/>
+          <path d="m22 5 5 5-3 1-5 5-3-3 5-5 1-3Z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="eyebrow">Tabletop toolkit</p>
+        <h1>Encounter Builder</h1>
+        <p class="app-subtitle">Assemble the party. Choose the threat. We’ll do the math next.</p>
+      </div>
+    </header>
+
+    <main class="encounter-grid" aria-label="Encounter setup">
+      <section class="panel party-panel" aria-labelledby="party-title">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 id="party-title">Party</h2>
+            <span class="count-badge" id="party-count" aria-live="polite">4</span>
+          </div>
+          <button class="icon-button add-button" id="add-party" type="button" aria-label="Add party member" title="Add party member">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <p class="panel-hint">Enter each character’s level.</p>
+        <div class="rows" id="party-rows"></div>
+      </section>
+
+      <section class="panel monsters-panel" aria-labelledby="monsters-title">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 id="monsters-title">Monsters</h2>
+            <span class="count-badge" id="monster-count" aria-live="polite">1</span>
+          </div>
+          <button class="icon-button add-button" id="add-monster" type="button" aria-label="Add monster group" title="Add monster group">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <p class="panel-hint">Enter a CR to browse matching Monster Manual stat blocks.</p>
+        <div class="monster-column-labels" aria-hidden="true">
+          <span>Challenge rating</span>
+          <span>Monster</span>
+          <span>Count</span>
+          <span></span>
+        </div>
+        <div class="rows monster-rows" id="monster-rows"></div>
+      </section>
+
+      <aside class="panel calculations-panel" aria-labelledby="calculations-title">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 id="calculations-title">Calculations</h2>
+          </div>
+          <span class="status-pill">Next</span>
+        </div>
+        <div class="calculations-empty">
+          <div class="calculation-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 3h10v4H7zM5 7h14v14H5zM8 11h3M13 11h3M8 15h3M13 15h3M8 18h3M13 18h3"/></svg>
+          </div>
+          <p>Encounter calculations will live here.</p>
+          <span>We’ll choose the clearest difficulty view after the roster feels right.</span>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <template id="party-row-template">
+    <div class="entry-row party-row">
+      <label class="level-field">
+        <span>Level:</span>
+        <input class="level-input" type="number" min="1" max="20" step="1" inputmode="numeric" placeholder="1" aria-label="Party member level">
+      </label>
+      <button class="icon-button delete-button" type="button" aria-label="Remove party member" title="Remove party member">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8"/></svg>
+      </button>
+    </div>
+  </template>
+
+  <template id="monster-row-template">
+    <div class="entry-row monster-row">
+      <label class="cr-field">
+        <span>CR:</span>
+        <input class="cr-input" type="text" inputmode="decimal" autocomplete="off" placeholder="e.g. 1/4" aria-label="Monster challenge rating">
+      </label>
+      <label class="sr-only">Monster</label>
+      <select class="monster-select" aria-label="Monster" disabled>
+        <option value="">Enter CR first</option>
+      </select>
+      <div class="stepper" role="group" aria-label="Monster quantity">
+        <button class="stepper-button decrement" type="button" aria-label="Decrease monster quantity">−</button>
+        <output class="quantity" aria-live="polite">1</output>
+        <button class="stepper-button increment" type="button" aria-label="Increase monster quantity">+</button>
+      </div>
+      <button class="icon-button delete-button" type="button" aria-label="Remove monster group" title="Remove monster group">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8"/></svg>
+      </button>
+      <p class="cr-message" aria-live="polite"></p>
+    </div>
+  </template>
+
+  <script src="monsters.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
