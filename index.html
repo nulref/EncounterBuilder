@@ -63,15 +63,54 @@
           <div class="panel-title-group">
             <h2 id="calculations-title">Calculations</h2>
           </div>
-          <span class="status-pill">Next</span>
         </div>
-        <div class="calculations-empty">
-          <div class="calculation-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M7 3h10v4H7zM5 7h14v14H5zM8 11h3M13 11h3M8 15h3M13 15h3M8 18h3M13 18h3"/></svg>
-          </div>
-          <p>Encounter calculations will live here.</p>
-          <span>We’ll choose the clearest difficulty view after the roster feels right.</span>
-        </div>
+        <button class="calculate-button" id="calculate" type="button">Calculate</button>
+
+        <ul class="calculation-list">
+          <li>
+            <p class="calculation-copy">
+              Here are the thresholds and the encounter difficulty.
+              <span class="encounter-matchup" id="encounter-matchup">(4 PCs vs 0 Monsters)</span>
+            </p>
+            <div class="difficulty-visual" id="difficulty-visual">
+              <div class="difficulty-track" role="img" aria-label="Encounter difficulty scale">
+                <div class="difficulty-segment low-segment" id="low-segment"></div>
+                <div class="difficulty-segment medium-segment" id="medium-segment"></div>
+                <div class="difficulty-segment high-segment" id="high-segment"></div>
+                <div class="difficulty-marker" id="difficulty-marker">
+                  <span id="difficulty-xp">0 XP</span>
+                </div>
+              </div>
+              <div class="difficulty-axis" aria-hidden="true">
+                <span>0</span>
+                <span id="low-threshold">200</span>
+                <span id="medium-threshold">300</span>
+                <span id="high-threshold">400</span>
+              </div>
+              <div class="difficulty-labels" aria-label="Difficulty categories">
+                <strong data-difficulty="too-low">Too Low</strong>
+                <strong data-difficulty="low">Low</strong>
+                <strong data-difficulty="medium">Medium</strong>
+                <strong data-difficulty="high">High</strong>
+                <strong data-difficulty="too-high">Too High</strong>
+              </div>
+            </div>
+          </li>
+          <li>
+            <p class="calculation-copy" id="xp-summary">
+              The amount of XP to be shared between all PCs is <strong>0 XP</strong> (<strong>0 XP per PC</strong>).
+            </p>
+          </li>
+          <li>
+            <p class="calculation-copy">And here are the Individual Treasure rolls for each creature:</p>
+            <div class="treasure-results" id="treasure-results" aria-live="polite">
+              <p class="empty-result">Choose at least one monster to generate treasure.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="calculation-note" id="calculation-note" aria-live="polite">
+          Difficulty and XP update automatically. Calculate rerolls treasure.
+        </p>
       </aside>
     </main>
   </div>
@@ -80,7 +119,7 @@
     <div class="entry-row party-row">
       <label class="level-field">
         <span>Level:</span>
-        <input class="level-input" type="number" min="1" max="20" step="1" inputmode="numeric" placeholder="1" aria-label="Party member level">
+        <input class="level-input" type="number" min="1" max="20" step="1" inputmode="numeric" value="1" aria-label="Party member level">
       </label>
       <button class="icon-button delete-button" type="button" aria-label="Remove party member" title="Remove party member">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8 8 8M16 8l-8 8"/></svg>

@@ -1,6 +1,6 @@
 # Encounter Builder
 
-A lightweight, browser-based D&D encounter builder using creatures from the 2024 *Monster Manual*. The current version focuses on assembling a party and choosing monster groups; encounter calculations are the next planned step.
+A lightweight, browser-based D&D encounter builder using creatures from the 2024 *Monster Manual*. Assemble a party, choose monster groups, compare the encounter against the 2024 XP budgets, and roll individual treasure.
 
 ## Features
 
@@ -9,7 +9,10 @@ A lightweight, browser-based D&D encounter builder using creatures from the 2024
 - Monster rows filtered by challenge rating
 - 503 monster stat-block names grouped across 30 CR values
 - Quantity controls for each monster group
-- Responsive three-column layout with a reserved Calculations panel
+- Dynamic Low, Moderate, and High XP thresholds for mixed-level parties
+- Total and per-character XP awards
+- Individual treasure rolls that respect each monster's listed treasure tag
+- Responsive three-column layout
 - No framework, package manager, database, or build step required
 
 ## Run locally
@@ -60,8 +63,6 @@ GitHub will display the public Pages URL after the first deployment completes. T
 
 ## Roadmap
 
-- Party and monster encounter calculations
-- Encounter difficulty presentation
 - Saved or shareable encounter state
 - Additional filtering and monster details
 
